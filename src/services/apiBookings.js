@@ -9,9 +9,14 @@ export async function getBookings({ filter, sortBy }) {
     );
 
   //FILTER
-  if (filter != null)
-    query = query[filter.method || "eq"](filter.field, filter.value);
+  if (filter) query = query[filter.method || "eq"](filter.field, filter.value);
   //TU MOZNA JAKOS ZROBIV TABLICE TYCH OBIEKTOW I JAKOS TO MAPOWAC POMYSL NAD TYM
+
+  //SORT
+  if (sortBy)
+    query = query.order(sortBy.field, {
+      ascending: sortBy.direction === "asc",
+    });
 
   const { data, error } = await query;
 
