@@ -45,6 +45,7 @@ const StyledList = styled.ul`
 const StyledButton = styled.button`
   width: 100%;
   text-align: left;
+  text-wrap: nowrap;
   background: none;
   border: none;
   padding: 1.2rem 2.4rem;
