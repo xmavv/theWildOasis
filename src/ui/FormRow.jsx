@@ -27,6 +27,10 @@ const StyledFormRow = styled.div`
   }
 `;
 
+const StyledFormRowVertical = styled(StyledFormRow)`
+  grid-template-columns: none;
+`;
+
 const Label = styled.label`
   font-weight: 500;
 `;
@@ -36,7 +40,16 @@ const Error = styled.span`
   color: var(--color-red-700);
 `;
 
-function FormRow({ label, error, children }) {
+export function FormRow({ label, error, children, vertical = false }) {
+  if (vertical)
+    return (
+      <StyledFormRowVertical>
+        {label && <Label htmlFor={children.props.id}>{label}</Label>}
+        {children}
+        {error && <Error>{error}</Error>}
+      </StyledFormRowVertical>
+    );
+
   return (
     <StyledFormRow>
       {label && <Label htmlFor={children.props.id}>{label}</Label>}
